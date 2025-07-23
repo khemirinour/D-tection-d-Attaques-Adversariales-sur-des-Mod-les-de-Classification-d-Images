@@ -1,4 +1,5 @@
-# 🛡️ Détection d'Attaques Adversariales sur des Modèles de Classification d'Images
+# 🛡️ Détection d'Attaques Adversariales pour les modèles de classification d'images
+
 
 ## 📌 Description du Projet
 Ce projet vise à développer un pipeline complet pour générer, détecter et se défendre contre les attaques adversariales sur des modèles de classification d'images. Il est particulièrement adapté aux cas d’usage en imagerie médicale (IRM), où la sécurité et la fiabilité des modèles sont cruciales.
@@ -79,7 +80,7 @@ subject to x + δ ∈ [0,1]^n
 - Accuracy sur données propres : **92.5 %**
 
 ---
-<img width="512" height="852" alt="interfac web complet" src="https://github.com/user-attachments/assets/1ae09678-5b87-45f3-b428-c48a89d06948" />
+<center><img width="512" height="852" alt="interfac web complet" src="https://github.com/user-attachments/assets/1ae09678-5b87-45f3-b428-c48a89d06948" /></center>
 
 
 ## 👩‍💻 Auteur
