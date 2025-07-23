@@ -71,16 +71,43 @@ L’attaque C&W repose sur une optimisation qui minimise la perturbation tout en
 minimize ||δ||² + c * f(x + δ)
 subject to x + δ ∈ [0,1]^n
 ```
+## 🏗️ Architecture du Pipeline
+
+Voici l’architecture globale du pipeline utilisé pour la détection d’attaques adversariales :
+
+<img width="851" height="772" alt="pipline" src="https://github.com/user-attachments/assets/ddf8bdbc-a15e-4de4-9b3d-6be1ea60fc8a" />
+
+
+Afin de pallier l’insuffisance de jeux de données publics contenant des exemples d’images médicales adversariales, nous avons généré notre **propre dataset adversarial** à partir d’images IRM d’origine. Celui-ci a été utilisé pour l’entraînement et la validation de notre module de détection d’attaques adversariales.
+
+Les étapes du pipeline sont les suivantes :
+
+1. **Prétraitement des images** : redimensionnement, normalisation.  
+2. **Génération d’attaques adversariales** : implémentation de FGSM, PGD, BIM, MIM, C&W.  
+3. **Création du dataset adversarial** : sauvegarde des images perturbées avec étiquettes.  
+4. **Entraînement du détecteur** : apprentissage supervisé sur des paires (image propre, image attaquée).  
+5. **Détection conditionnelle** :  
+   - Si l’image est détectée **propre**, elle est envoyée au **classificateur principal** pour prédiction de la classe.  
+   - Si l’image est détectée **adversariale**, elle est signalée ou rejetée pour éviter une mauvaise classification.  
+6. **Déploiement via API Flask** : automatisation du pipeline.  
+7. **Interface web (optionnelle)** :  
+   - Permet d’**importer** le dataset d’images propres ainsi que le modèle de classification, afin de générer un dataset adversarial personnalisé et d’entraîner un détecteur adapté.  
+   - Offre une **option de test en temps réel** :  
+     - L’utilisateur peut uploader une image pour analyse immédiate.  
+     - Le système utilise le détecteur pour déterminer si l’image est propre ou adversariale.  
+     - Si l’image est **propre**, elle est automatiquement classifiée par le modèle principal.  
+     - Si l’image est **adversariale**, le système affiche le type d’attaque détecté, permettant ainsi une meilleure interprétation et gestion.
 
 ---
 
 ## 📊 Modèle Utilisé
 
-- Modèle : CNN Séquentiel (Keras)  
+- Modèle : CNN Séquentiel 
 - Accuracy sur données propres : **92.5 %**
 
 ---
-<center><img width="512" height="852" alt="interfac web complet" src="https://github.com/user-attachments/assets/1ae09678-5b87-45f3-b428-c48a89d06948" /></center>
+<img width="512" height="852" alt="interfac web complet" src="https://github.com/user-attachments/assets/1ae09678-5b87-45f3-b428-c48a89d06948" />
+<img width="736" height="1131" alt="predict = propre" src="https://github.com/user-attachments/assets/ce556a39-bffb-4b68-a601-3ef2e546d0bd" />
 
 
 ## 👩‍💻 Auteur
