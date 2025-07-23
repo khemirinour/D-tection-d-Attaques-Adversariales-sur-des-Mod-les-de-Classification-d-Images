@@ -107,7 +107,6 @@ Les étapes du pipeline sont les suivantes :
 
 ---
 <img width="512" height="852" alt="interfac web complet" src="https://github.com/user-attachments/assets/1ae09678-5b87-45f3-b428-c48a89d06948" />
-<img width="736" height="1131" alt="predict = propre" src="https://github.com/user-attachments/assets/ce556a39-bffb-4b68-a601-3ef2e546d0bd" />
 
 
 ## 👩‍💻 Auteur
